@@ -35,6 +35,7 @@ module.exports = {
           { pattern: 'types/**', group: 'internal' },
           { pattern: 'utils/**', group: 'internal' },
           { pattern: 'constants/**', group: 'internal' },
+          { pattern: 'store/**', group: 'internal' },
           { pattern: 'mocks/**', group: 'internal' },
         ],
         alphabetize: {
