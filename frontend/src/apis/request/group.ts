@@ -38,7 +38,11 @@ const requestCreateGroup = async ({
   };
 
   return axios
-    .post(API_PATH.GROUP, data)
+    .post(API_PATH.GROUP, data, {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkluQm9uZyBTb25nIiwiaWF0IjoxNTE2MjM5MDIyfQ.XikBQw8OOU87xoWsYVTJjx6Vpb114WW4FfBoWqqVYHU`,
+      },
+    })
     .then(response => {
       return response.data.groupId;
     })

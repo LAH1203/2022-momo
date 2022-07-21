@@ -8,6 +8,7 @@ const convertRemainTime = (deadline: string) => {
 
   if (gap <= 0 || Number.isNaN(gap)) return null;
 
+  // TODO: 산술식 상수화 시키기
   const dayGap = Math.floor(gap / (1000 * 60 * 60 * 24));
   const hourGap = Math.floor((gap / (1000 * 60 * 60)) % 24);
   const minGap = Math.floor((gap / (1000 * 60)) % 60);

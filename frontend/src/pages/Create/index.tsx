@@ -18,7 +18,7 @@ import useCreateState from 'hooks/useCreateState';
 import PageError from 'utils/PageError';
 
 import * as S from './index.styled';
-import validator from './validate';
+import validateGroupData from './validate';
 
 const totalPage = [
   { number: 1, content: '이름 입력' },
@@ -41,8 +41,8 @@ function Create() {
     getGroupState,
   } = useCreateState();
   const [page, setPage] = useState(1);
-  const navigate = useNavigate();
   const pageRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const navigate = useNavigate();
 
   const getPageRef = (page: number) => (element: HTMLDivElement | null) => {
     pageRefs.current[page] = element;
@@ -82,7 +82,7 @@ function Create() {
     const groupData = getGroupState();
 
     try {
-      validator(groupData);
+      validateGroupData(groupData);
     } catch (error) {
       if (!(error instanceof PageError)) return;
 
@@ -92,9 +92,8 @@ function Create() {
     }
 
     requestCreateGroup(groupData)
-      .then(res => {
-        const id = 1;
-        navigate(`${BROWSER_PATH.DETAIL}/${id}`);
+      .then(groupId => {
+        navigate(`${BROWSER_PATH.DETAIL}/${groupId}`);
       })
       .catch(error => {
         alert(error.message);

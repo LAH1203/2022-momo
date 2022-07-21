@@ -27,7 +27,7 @@ const theme: Theme = {
     red002: '#F7797D',
   },
   filter: {
-    darken001: '#0000004d',
+    darken001: '#0000004D',
   },
 };
 

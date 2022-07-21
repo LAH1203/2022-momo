@@ -35,7 +35,7 @@ function Detail() {
           <DetailSideBar
             id={Number(id)}
             name={data.host.name}
-            schedules={data.schedules}
+            duration={data.duration}
             location={data.location}
             categoryName={
               categories.find(category => category.id === data.categoryId)

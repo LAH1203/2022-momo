@@ -98,7 +98,7 @@ const generateValidators = ({
   ];
 };
 
-const validator = (props: ValidatorProps) => {
+const validateGroupData = (props: ValidatorProps) => {
   const validators = generateValidators(props);
 
   validators.forEach(({ validator, errorMessage, targetPageNumber }) => {
@@ -108,4 +108,4 @@ const validator = (props: ValidatorProps) => {
   });
 };
 
-export default validator;
+export default validateGroupData;

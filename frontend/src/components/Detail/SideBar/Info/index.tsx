@@ -11,19 +11,30 @@ import { CategoryType, DetailData } from 'types/data';
 import * as S from './index.styled';
 
 // TODO: 시간 제외 날짜 파싱, 이후에 달력과 함께 표기
-const parsedDate = (schedules: DetailData['schedules']) =>
-  '2022년 12월 25일 오후 6 ~ 10시';
+const parsedDate = (duration: DetailData['duration']) => {
+  const startDates = duration.start.split('-');
+  const parsedStartDate = `${startDates[0]}년 ${startDates[1]}월 ${startDates[2]}일`;
+  const endDates = duration.end.split('-');
+  const parsedEndDate = `${endDates[0]}년 ${endDates[1]}월 ${endDates[2]}일`;
+
+  if (duration.start === duration.end) {
+    return parsedStartDate;
+  }
+
+  return `${parsedStartDate} ~ ${parsedEndDate}`;
+};
 
 function Info({
   id,
   name,
-  schedules,
+  duration,
   categoryName,
   location,
-}: Pick<DetailData, 'id' | 'name' | 'schedules' | 'location'> & {
+}: Pick<DetailData, 'id' | 'name' | 'duration' | 'location'> & {
   categoryName: CategoryType['name'];
 }) {
   const navigate = useNavigate();
+
   const deleteGroup = () => {
     if (!window.confirm(GUIDE_MESSAGE.DELETE.CONFIRM_REQUEST)) return;
 
@@ -41,7 +52,7 @@ function Info({
     <S.Container>
       <S.Wrapper>
         <ClockSVG width={32} />
-        <S.Text>{parsedDate(schedules)}</S.Text>
+        <S.Text>{parsedDate(duration)}</S.Text>
       </S.Wrapper>
       <S.Wrapper>
         <LocationSVG width={32} />

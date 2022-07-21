@@ -28,6 +28,8 @@ function Step5(
     setDeadline(e.target.value);
   };
 
+  const remainTime = convertRemainTime(deadline);
+
   return (
     <Container ref={ref}>
       <Heading>
@@ -36,7 +38,7 @@ function Step5(
       <LabelContainer>
         <Label>
           <p>날짜</p>
-          <p>{deadline && `${convertRemainTime(deadline)} 후`}</p>
+          <p>{remainTime && `${remainTime} 후`}</p>
         </Label>
         <Input
           type="datetime-local"
